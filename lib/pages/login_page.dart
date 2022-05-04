@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
           children: [
             Icon(
               Icons.people,
-              size: MediaQuery.of(context).size.height * 0.5,
+              size: MediaQuery.of(context).size.height * 0.3,
             ),
             TextField(
               decoration: InputDecoration(label: Text('Login')),

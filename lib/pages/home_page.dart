@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto01/controller/home_controller.dart';
 import 'package:projeto01/models/post_model.dart';
 import 'package:projeto01/repositories/home_repository.dart';
-import 'package:projeto01/repositories/home_repository_imp.dart';
+import 'package:projeto01/repositories/home_repository_impl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final HomeController _controller = HomeController(HomeRepositoryImp());
+  final HomeController _controller = HomeController(HomeRepositoryImpl());
 
   @override
   void initState() {
@@ -22,8 +22,24 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ValueListenableBuilder<List<PostModel>>(
+    return Scaffold(         
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ValueListenableBuilder<List<PostModel>>(
+                valueListenable: _controller.posts,
+                builder: (_,list, __) {
+
+
+
+
+                }            
+              
+              ,)
+
+
+
+            ],
       valueListenable: _controller.posts,
       builder: (_, list, __) {
         return ListView.builder(
@@ -32,6 +48,6 @@ class _HomePageState extends State<HomePage> {
                   title: Text(list[idx].title),
                 ));
       },
-    ));
+    )));
   }
 }

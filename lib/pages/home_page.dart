@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:projeto01/controller/home_controller.dart';
 import 'package:projeto01/models/post_model.dart';
@@ -22,32 +24,28 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(         
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Home'),
+        ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ValueListenableBuilder<List<PostModel>>(
-                valueListenable: _controller.posts,
-                builder: (_,list, __) {
-
-
-
-
-                }            
-              
-              ,)
-
-
-
-            ],
-      valueListenable: _controller.posts,
-      builder: (_, list, __) {
-        return ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (_, idx) => ListTile(
+          child: ValueListenableBuilder<List<PostModel>>(
+            valueListenable: _controller.posts,
+            builder: (_, list, __) {
+              return ListView.separated(
+                shrinkWrap: true,
+                itemCount: list.length,
+                itemBuilder: (_, idx) => ListTile(
+                  leading: Text(list[idx].id.toString()),
+                  trailing: Icon(Icons.arrow_forward),
                   title: Text(list[idx].title),
-                ));
-      },
-    )));
+                  onTap: () => Navigator.of(context)
+                      .pushNamed('/details', arguments: list[idx]),
+                ),
+                separatorBuilder: (_, __) => Divider(),
+              );
+            },
+          ),
+        ));
   }
 }

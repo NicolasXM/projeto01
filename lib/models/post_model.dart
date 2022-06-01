@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class PostModel {
   final int userId;
   final int id;
@@ -24,5 +22,10 @@ class PostModel {
       json['title'],
       json['body'],
     );
+  }
+
+  @override
+  String toString() {
+    return "id: $id";
   }
 }

@@ -9,7 +9,7 @@ class PrefsService {
     prefers.setString(_key, jsonEncode({"user": user, "isAuth": true}));
   }
 
-  Future<bool> isAuth(String user) async {
+  static Future<bool> isAuth() async {
     var prefers = await SharedPreferences.getInstance();
     var jsonResult = prefers.getString(_key);
 
@@ -19,5 +19,11 @@ class PrefsService {
     }
 
     return false;
+  }
+
+  static logout() async {
+    var prefers = await SharedPreferences.getInstance();
+
+    prefers.remove(_key);
   }
 }

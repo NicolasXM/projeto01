@@ -30,10 +30,10 @@ class _HomePageState extends State<HomePage> {
           title: Text('Home'),
           actions: [
             IconButton(
-              onPressed: () => {
+              onPressed: () {
                 PrefsService.logout();
                 Navigator.of(context)
-                    .pushNamedAndRemoveUntil("/login", (_) => true)
+                    .pushNamedAndRemoveUntil("/login", (_) => true);
               },
               icon: Icon(Icons.logout_sharp),
             )
